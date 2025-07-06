@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/small_decoration_tile.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/tile/terrain/floor_autotile.png" type="Texture" id=3]
+[ext_resource path="res://scenes/env/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/env/Mask.tscn" type="PackedScene" id=5]
+
+[sub_resource type="TileSet" id=1]
+0/name = "floor_autotile"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 96 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/autotile/fallback_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Level" type="Node2D"]
+
+[node name="LevelDesign" type="Node2D" parent="."]
+
+[node name="Floor" type="TileMap" parent="LevelDesign"]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 262156, 0, 0, 262157, 0, 1, 262158, 0, 1, 262159, 0, 2, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131073, 327689, 0, 131074, 327692, 0, 131072, 327693, 0, 131073, 327694, 0, 131073, 327695, 0, 131074, 524300, 0, 0, 524301, 0, 1, 524302, 0, 1, 524303, 0, 2, 589836, 0, 131072, 589837, 0, 131073, 589838, 0, 131073, 589839, 0, 131074 )
+
+[node name="NormalDecorationTile" type="TileMap" parent="LevelDesign"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 196608, 3, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196617, 4, 0, 196620, 4, 0, 196621, 1, 0, 393231, 2, 0, 458764, 3, 0 )
+
+[node name="SmallDecorationTile" type="TileMap" parent="LevelDesign"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 458754, 0, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458764, 2, 0, 458767, 2, 0, 458769, 0, 0, 458776, 1, 0, 458778, 0, 0, 458779, 1, 0, 983066, 0, 0, 983067, 0, 0 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="Mask" parent="." instance=ExtResource( 5 )]
