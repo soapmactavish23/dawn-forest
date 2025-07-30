@@ -10,6 +10,7 @@ export(int) var speed
 func _physics_process(delta):
 	horizontal_movement_env()
 	velocity = move_and_slide(velocity)
+	player_sprite.animate(velocity)
 	
 func horizontal_movement_env() -> void:
 	var uiRight = Input.get_action_strength("ui_right")
