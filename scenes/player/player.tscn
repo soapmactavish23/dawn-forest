@@ -7,40 +7,6 @@
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 5.5, 16 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
-length = 0.6
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Jump"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 26, 27, 28, 29 ]
-}
-
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
@@ -57,8 +23,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "fail"
-loop = true
+resource_name = "fall"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
@@ -72,10 +37,42 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "lading"
-length = 0.3
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.6
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 26, 27, 28, 29 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "landing"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
@@ -92,7 +89,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "run"
 length = 0.8
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
@@ -123,13 +119,14 @@ vframes = 11
 frame = 1
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
+player = NodePath("..")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 1 )
-anims/Jump = SubResource( 4 )
 anims/RESET = SubResource( 2 )
-anims/fail = SubResource( 5 )
-anims/lading = SubResource( 6 )
+anims/fall = SubResource( 5 )
+anims/idle = SubResource( 1 )
+anims/jump = SubResource( 4 )
+anims/landing = SubResource( 6 )
 anims/run = SubResource( 3 )
 
 [node name="LevelCamera" type="Camera2D" parent="."]
@@ -137,3 +134,5 @@ current = true
 limit_top = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+
+[connection signal="animation_finished" from="Animation" to="Texture" method="on_Animation_animation_finished"]

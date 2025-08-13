@@ -7,7 +7,7 @@ var velocity: Vector2
 
 var jump_count: int = 0
 
-var lading: bool = false
+var landing: bool = false
 
 export(int) var speed
 export(int) var jump_speed
@@ -26,9 +26,7 @@ func horizontal_movement_env() -> void:
 	var uiRight = Input.get_action_strength("ui_right")
 	var uiLeft = Input.get_action_strength("ui_left")
 	var input_direction: float = uiRight - uiLeft
-	
 	velocity.x = input_direction * speed
-	print(velocity.x)
 
 func vertical_movement_env() -> void:
 	if is_on_floor():
