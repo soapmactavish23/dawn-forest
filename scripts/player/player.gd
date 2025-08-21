@@ -32,13 +32,20 @@ func horizontal_movement_env() -> void:
 	var uiRight = Input.get_action_strength("ui_right")
 	var uiLeft = Input.get_action_strength("ui_left")
 	var input_direction: float = uiRight - uiLeft
+	if can_track_input == false or attacking:
+		velocity.x = 0
+		return
 	velocity.x = input_direction * speed
 
 func vertical_movement_env() -> void:
 	if is_on_floor():
 		jump_count = 0
 	
-	if Input.is_action_just_pressed("ui_select") and jump_count < 2:
+	var jump_condition: bool = can_track_input and not attacking
+	var double_jump: bool = jump_count < 2
+	var ui_selected = Input.is_action_just_pressed("ui_select") 
+	
+	if ui_selected and double_jump and jump_condition:
 		jump_count += 1
 		velocity.y = jump_speed
 

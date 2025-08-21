@@ -33,6 +33,7 @@ func verify_position(direction: Vector2) -> void:
 func action_behavior() -> void:
 	if player.attacking and normal_attack:
 		animation.play("attack" + suffix)
+		player.set_physics_process(false)
 	elif player.defending and shield_off:
 		animation.play("shield")
 		shield_off = false
@@ -61,6 +62,9 @@ func on_Animation_animation_finished(anim_name):
 		"attack_left":
 			normal_attack = false
 			player.attacking = false
+			player.set_physics_process(true)
 		"attack_right":
 			normal_attack = false
 			player.attacking = false
+			player.set_physics_process(true)
+			
