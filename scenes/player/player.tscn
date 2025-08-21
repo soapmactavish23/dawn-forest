@@ -377,6 +377,7 @@ drag_margin_v_enabled = true
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource( 9 )
 disabled = true
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="on_Animation_animation_finished"]
