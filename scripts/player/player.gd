@@ -2,22 +2,28 @@ extends KinematicBody2D
 class_name Player
 
 onready var player_sprite: Sprite = $Texture
-
+onready var wall_ray: RayCast2D = $WallRay
 var velocity: Vector2
 
 var jump_count: int = 0
 
+var direction: int = 1
 var landing: bool = false
+var on_wall: bool = false
 var attacking: bool = false
 var defending: bool = false
 var crouching: bool = false
 
+var not_on_wall: bool = true
 var can_track_input: bool = true
 
 export(int) var speed
 export(int) var jump_speed
+export(int) var wall_jump_speed
 
+export(int) var wall_gravity
 export(int) var player_gravity
+export(int) var wall_impulse_speed
 
 func _physics_process(delta):
 	horizontal_movement_env()
@@ -38,7 +44,7 @@ func horizontal_movement_env() -> void:
 	velocity.x = input_direction * speed
 
 func vertical_movement_env() -> void:
-	if is_on_floor():
+	if is_on_floor() or is_on_wall():
 		jump_count = 0
 	
 	var jump_condition: bool = can_track_input and not attacking
@@ -47,7 +53,11 @@ func vertical_movement_env() -> void:
 	
 	if ui_selected and double_jump and jump_condition:
 		jump_count += 1
-		velocity.y = jump_speed
+		if next_to_wall() and not is_on_floor():
+			velocity.y = wall_jump_speed
+			velocity.x += wall_impulse_speed * direction
+		else:
+			velocity.y = jump_speed
 
 func actions_env() -> void:
 	attack()
@@ -80,6 +90,21 @@ func defense() -> void:
 		player_sprite.shield_off = true
 
 func gravity(delta: float) -> void:
-	velocity.y += delta * player_gravity
-	if velocity.y >= player_gravity:
-		velocity.y = player_gravity
+	if next_to_wall():
+		velocity.y += wall_gravity * delta
+		if velocity.y >= wall_gravity:
+			velocity = wall_gravity
+	else:
+		velocity.y += delta * player_gravity
+		if velocity.y >= player_gravity:
+			velocity.y = player_gravity
+
+func next_to_wall() -> bool:
+	if wall_ray.is_colliding() and not is_on_floor():
+		if not_on_wall:
+			velocity.y = 0
+			not_on_wall = false
+		return true
+	else:
+		not_on_wall = true
+		return false
