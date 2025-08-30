@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://resources/small_decoration_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=2]
@@ -115,6 +115,11 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 } ]
 0/z_index = 0
 
+[sub_resource type="Environment" id=11]
+background_mode = 4
+glow_enabled = true
+glow_hdr_threshold = 1.5
+
 [node name="Level" type="Node2D"]
 
 [node name="LevelDesign" type="Node2D" parent="."]
@@ -143,3 +148,6 @@ tile_data = PoolIntArray( 458754, 0, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 79, 51 )
+
+[node name="Enviroment" type="WorldEnvironment" parent="."]
+environment = SubResource( 11 )
