@@ -93,3 +93,7 @@ func update_mana(type: String, value: int) -> void:
 			
 		"Decrease":
 			current_mana -= value
+
+func _process(delta):
+	if Input.is_action_just_pressed("Dano"):
+		update_health("Decrease", 5)
