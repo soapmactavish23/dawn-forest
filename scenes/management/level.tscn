@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://resources/small_decoration_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/env/background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/env/Mask.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/management/level.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -121,6 +122,7 @@ glow_enabled = true
 glow_hdr_threshold = 1.5
 
 [node name="Level" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="LevelDesign" type="Node2D" parent="."]
 
