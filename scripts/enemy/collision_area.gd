@@ -19,3 +19,5 @@ func update_health(damage: int) -> void:
 		enemy.can_die = true
 		return
 	enemy.can_hit = true
+
+
