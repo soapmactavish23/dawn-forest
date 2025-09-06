@@ -263,6 +263,9 @@ shape = SubResource( 4 )
 position = Vector2( 0, 3 )
 shape = SubResource( 5 )
 
+[node name="CollisionArea" parent="." index="3"]
+health = 10
+
 [node name="Animation" parent="." index="5"]
 autoplay = "idle"
 anims/RESET = SubResource( 6 )
