@@ -9,9 +9,9 @@ func animate(velocity: Vector2) -> void:
 	
 func action_behavior() -> void:
 	if enemy.can_die:
+		animation.play("dead")
 		enemy.can_hit = false
 		enemy.can_attack = false
-		animation.play("dead")
 	elif enemy.can_hit:
 		animation.play("hit")
 		enemy.can_attack = false

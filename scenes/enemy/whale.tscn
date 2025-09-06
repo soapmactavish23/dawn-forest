@@ -466,3 +466,5 @@ visible = false
 position = Vector2( -33, 0 )
 enabled = true
 cast_to = Vector2( 0, 30 )
+
+[connection signal="animation_finished" from="Animation" to="Texture" method="on_animation_finished"]
