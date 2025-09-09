@@ -83,4 +83,13 @@ func spawn_item_probability() -> void:
 				drop_list[key][2],
 				drop_list[key][3], 
 				drop_list[key][4], 
-				1]
+				1
+			]
+			
+			spawn_physic_item(key, item_texture, item_info)
+
+func spawn_physic_item(
+	key: String, 
+	item_texture: StreamTexture, 
+	item_info: Array) -> void:
+	pass
