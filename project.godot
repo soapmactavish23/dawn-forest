@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/detection_area.gd"
 }, {
+"base": "AnimatedSprite",
+"class": "EffectTemplate",
+"language": "GDScript",
+"path": "res://scripts/env/effect_template.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "EnemyTemplate",
 "language": "GDScript",
@@ -73,6 +78,7 @@ _global_script_class_icons={
 "Background": "",
 "CollisionArea": "",
 "DetectionArea": "",
+"EffectTemplate": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
 "Level": "",
