@@ -9,6 +9,9 @@ var item_name: String
 var item_info_list: Array
 var item_texture: StreamTexture
 
+const COLLECT_EFFECT: PackedScene = preload(
+	"res://scenes/effect/general_effects/collect_item.tscn")
+
 func _ready() -> void:
 	randomize()
 	apply_random_impulse()
@@ -49,5 +52,11 @@ func _on_body_exited(_body: Player):
 	
 func _process(delta: float) -> void:
 	if player_ref != null and Input.is_action_just_pressed("interact"):
-		# TODO: emitir sinal para spawnar item
+		spawn_effect()
 		queue_free()
+
+func spawn_effect() -> void:
+	var collect_effect: EffectTemplate = COLLECT_EFFECT.instance()
+	get_tree().root.call_deferred("add_child", collect_effect)
+	collect_effect.global_position = global_position
+	collect_effect.play_effect()
