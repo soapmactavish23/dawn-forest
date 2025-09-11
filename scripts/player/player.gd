@@ -18,6 +18,7 @@ var attacking: bool = false
 var defending: bool = false
 var crouching: bool = false
 
+var flipped: bool = false
 var not_on_wall: bool = true
 var can_track_input: bool = true
 
@@ -57,6 +58,9 @@ func vertical_movement_env() -> void:
 	
 	if ui_selected and double_jump and jump_condition:
 		jump_count += 1
+		var jump_effect = "res://scenes/effect/dust/jump.tscn"
+		spawn_effect(jump_effect, Vector2(0, 18), flipped)
+		
 		if next_to_wall() and not is_on_floor():
 			velocity.y = wall_jump_speed
 			velocity.x += wall_impulse_speed * direction
