@@ -126,3 +126,4 @@ func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool):
 	effect_instance.global_position = global_position + offset
 	effect_instance.play_effect()
 	
+	
