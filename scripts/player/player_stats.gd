@@ -101,6 +101,9 @@ func update_health(type: String, value: int) -> void:
 			else:
 				player.on_hit = true
 				player.attacking = false
+				
+	get_tree().call_group("bar_container", "update_bar", "HealthBar", 
+		current_health)
 	
 func verify_shield(value: int) -> void:
 	if shielding:
@@ -121,6 +124,9 @@ func update_mana(type: String, value: int) -> void:
 			
 		"Decrease":
 			current_mana -= value
+	
+	get_tree().call_group("bar_container", "update_bar", "ManaBar", 
+		current_mana)
 
 func _process(delta):
 	if Input.is_action_just_pressed("Dano"):
