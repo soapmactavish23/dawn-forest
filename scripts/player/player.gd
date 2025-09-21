@@ -28,6 +28,7 @@ export(int) var wall_jump_speed
 
 export(int) var wall_gravity
 export(int) var player_gravity
+export(int) var magic_attack_cost
 export(int) var wall_impulse_speed
 
 func _physics_process(delta):
@@ -73,10 +74,19 @@ func actions_env() -> void:
 	defense()
 
 func attack() -> void:
-	var attack_condition: bool = not attacking and not crouching and not defending
-	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor():
+	var attack_mana_cost: bool = stats.current_mana >= magic_attack_cost
+	var attack_and_not_cro: bool = not attacking and not crouching
+	var attack_condition: bool = attack_and_not_cro and not defending and is_on_floor()
+	var normal_attack: bool = Input.is_action_just_pressed("attack") and attack_condition
+	var magic_attack: bool = Input.is_action_just_pressed("magic_attack") and attack_condition
+	
+	if normal_attack and is_on_floor():
 		attacking = true
 		player_sprite.normal_attack = true
+	elif magic_attack and attack_mana_cost:
+		attacking = true
+		player_sprite.magic_attack = true
+		stats.update_mana("Decrease", magic_attack_cost)
 	
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
