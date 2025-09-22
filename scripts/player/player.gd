@@ -1,11 +1,14 @@
 extends KinematicBody2D
 class_name Player
 
+const SPELL: PackedScene = preload("res://scenes/player/spell_area.tscn")
+
 onready var player_sprite: Sprite = $Texture
 onready var wall_ray: RayCast2D = $WallRay
 onready var stats: Node = $Stats
 
 var velocity: Vector2
+var spell_offset: Vector2 = Vector2(100, -50)
 
 var direction: int = 1
 var jump_count: int = 0
@@ -141,3 +144,8 @@ func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool):
 	effect_instance.play_effect()
 	
 	
+func spawn_spell() -> void:
+	var spell: FireSpell = SPELL.instance()
+	spell.spell_damage = stats.base_magic_attack + stats.bonus_magic_attack
+	spell.global_position = global_position + spell_offset
+	get_tree().root.call_deferred("add_child", spell)
