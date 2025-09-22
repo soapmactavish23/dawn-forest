@@ -129,6 +129,7 @@ script = ExtResource( 7 )
 [node name="LevelDesign" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMap" parent="LevelDesign"]
+z_index = 1
 tile_set = SubResource( 10 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 3
