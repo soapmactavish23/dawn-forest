@@ -10,6 +10,8 @@ var can_hit: bool = false
 var can_attack: bool = false
 
 var drop_bonus: int = 1
+var attack_animation_suffix: String = "_left"
+
 var velocity: Vector2
 var drop_list: Dictionary
 var player_ref: Player = null
@@ -58,9 +60,11 @@ func verify_position() -> void:
 		
 		if direction > 0:
 			texture.flip_h = true
+			attack_animation_suffix = "_right"
 			floor_ray.position.x = abs(raycast_default_position)
 		elif direction < 0:
 			texture.flip_h = false
+			attack_animation_suffix = "_left"
 			floor_ray.position.x = raycast_default_position
 			
 func kill_enemy() -> void:
