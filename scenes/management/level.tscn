@@ -164,12 +164,12 @@ environment = SubResource( 11 )
 [node name="Enemy" type="Node2D" parent="."]
 
 [node name="PinkStart" parent="Enemy" instance=ExtResource( 11 )]
-position = Vector2( 220, 119 )
+position = Vector2( 503, 245 )
 
 [node name="Crabby" parent="Enemy" instance=ExtResource( 10 )]
-position = Vector2( 491, 117 )
+position = Vector2( 491, 121 )
 
 [node name="Whale" parent="Enemy" instance=ExtResource( 8 )]
-position = Vector2( 415, 119 )
+position = Vector2( 271, 121 )
 
 [node name="Hud" parent="." instance=ExtResource( 9 )]
