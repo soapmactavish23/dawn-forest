@@ -513,7 +513,6 @@ enemy_exp = 9
 gravity_speed = 250
 proximity_threshold = 10
 raycast_default_position = -16
-floating_text = null
 
 [node name="Texture" parent="." index="0"]
 texture = ExtResource( 4 )
@@ -529,21 +528,20 @@ position = Vector2( 0, 0.5 )
 shape = SubResource( 12 )
 
 [node name="CollisionArea" parent="." index="3"]
-health = 29
+health = 5
 invulnerability_timer = 1.0
 
 [node name="Collision" parent="CollisionArea" index="0"]
 position = Vector2( 0, 2 )
 shape = SubResource( 11 )
-disabled = true
 
 [node name="EnemyAttackArea" parent="." index="4"]
 damage = 3
 invencibility_timer = 0.4
 
 [node name="Collision" parent="EnemyAttackArea" index="0"]
-visible = false
 shape = SubResource( 9 )
+disabled = true
 
 [node name="Animation" parent="." index="5"]
 anims/RESET = SubResource( 1 )
