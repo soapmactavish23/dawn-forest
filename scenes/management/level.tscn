@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://resources/small_decoration_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=2]
@@ -7,10 +7,8 @@
 [ext_resource path="res://scenes/env/Mask.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/management/level.gd" type="Script" id=7]
-[ext_resource path="res://scenes/enemy/whale.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/env/enemy_spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/interface/general/hud.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemy/crabby.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemy/PinkStart.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -137,7 +135,7 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 3
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 262156, 0, 0, 262157, 0, 1, 262158, 0, 1, 262159, 0, 2, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131073, 327689, 0, 131074, 327692, 0, 131072, 327693, 0, 131073, 327694, 0, 131073, 327695, 0, 131074, 524300, 0, 0, 524301, 0, 1, 524302, 0, 1, 524303, 0, 2, 589836, 0, 131072, 589837, 0, 131073, 589838, 0, 131073, 589839, 0, 131074 )
+tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 262156, 0, 0, 262157, 0, 1, 262158, 0, 1, 262159, 0, 2, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131073, 327689, 0, 131074, 327692, 0, 131072, 327693, 0, 131073, 327694, 0, 131073, 327695, 0, 131074, 524300, 0, 0, 524301, 0, 1, 524302, 0, 1, 524303, 0, 1, 524304, 0, 1, 524305, 0, 1, 524306, 0, 1, 524307, 0, 1, 524308, 0, 1, 524309, 0, 1, 524310, 0, 1, 524311, 0, 1, 524312, 0, 1, 524313, 0, 1, 524314, 0, 1, 524315, 0, 1, 524316, 0, 1, 524317, 0, 1, 524318, 0, 1, 524319, 0, 1, 524320, 0, 1, 524321, 0, 1, 524322, 0, 1, 524323, 0, 1, 524324, 0, 1, 524325, 0, 1, 524326, 0, 1, 524327, 0, 2, 589836, 0, 131072, 589837, 0, 131073, 589838, 0, 131073, 589839, 0, 131073, 589840, 0, 131073, 589841, 0, 131073, 589842, 0, 131073, 589843, 0, 131073, 589844, 0, 131073, 589845, 0, 131073, 589846, 0, 131073, 589847, 0, 131073, 589848, 0, 131073, 589849, 0, 131073, 589850, 0, 131073, 589851, 0, 131073, 589852, 0, 131073, 589853, 0, 131073, 589854, 0, 131073, 589855, 0, 131073, 589856, 0, 131073, 589857, 0, 131073, 589858, 0, 131073, 589859, 0, 131073, 589860, 0, 131073, 589861, 0, 131073, 589862, 0, 131073, 589863, 0, 131074 )
 
 [node name="NormalDecorationTile" type="TileMap" parent="LevelDesign"]
 tile_set = ExtResource( 2 )
@@ -156,20 +154,38 @@ tile_data = PoolIntArray( 458754, 0, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0
 [node name="Mask" parent="." instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 79, 51 )
+position = Vector2( 93, 99 )
 
 [node name="Enviroment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
 
 [node name="Enemy" type="Node2D" parent="."]
+position = Vector2( 161, 122 )
 
-[node name="PinkStart" parent="Enemy" instance=ExtResource( 11 )]
-position = Vector2( 503, 245 )
+[node name="EnemySpawner2" parent="Enemy" instance=ExtResource( 8 )]
+enemies_list = [ [ "res://scenes/enemy/whale.tscn", -11.5, 1.0, 100.0 ] ]
+spawn_cooldown = 5.0
+enemy_amount = 1
+left_gap_position = -135
+right_gap_position = 135
+can_respawn = true
 
-[node name="Crabby" parent="Enemy" instance=ExtResource( 10 )]
-position = Vector2( 491, 121 )
+[node name="EnemySpawner" parent="Enemy" instance=ExtResource( 8 )]
+position = Vector2( 292, 1 )
+enemies_list = [ [ "res://scenes/enemy/PinkStart.tscn", -11.5, 1.0, 44.0 ] ]
+spawn_cooldown = 10.0
+enemy_amount = 1
+left_gap_position = -70
+right_gap_position = 70
+can_respawn = true
 
-[node name="Whale" parent="Enemy" instance=ExtResource( 8 )]
-position = Vector2( 271, 121 )
+[node name="EnemySpawner3" parent="Enemy" instance=ExtResource( 8 )]
+position = Vector2( 714, 130 )
+enemies_list = [ [ "res://scenes/enemy/PinkStart.tscn", -11.5, 1.0, 44.0 ], [ "res://scenes/enemy/whale.tscn", -11.5, 45.0, 69 ], [ "res://scenes/enemy/crabby.tscn", -11.5, 70.0, 100.0 ] ]
+spawn_cooldown = 5.0
+enemy_amount = 4
+left_gap_position = -400
+right_gap_position = 400
+can_respawn = true
 
 [node name="Hud" parent="." instance=ExtResource( 9 )]

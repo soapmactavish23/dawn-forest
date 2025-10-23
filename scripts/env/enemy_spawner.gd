@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnemySpawner
 
-onready var spawn_timer: Timer = $Timer
+onready var spawn_timer: Timer = get_node("Timer")
 
 var enemy_count: int = 0
 
