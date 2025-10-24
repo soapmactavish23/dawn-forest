@@ -471,4 +471,8 @@ position = Vector2( -33, 0 )
 enabled = true
 cast_to = Vector2( 0, 30 )
 
+[node name="EnemyBar" parent="." index="7"]
+margin_top = -46.0
+margin_bottom = -46.0
+
 [connection signal="animation_finished" from="Animation" to="Texture" method="on_animation_finished"]
