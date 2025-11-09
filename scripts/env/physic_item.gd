@@ -52,6 +52,12 @@ func _on_body_exited(_body: Player):
 	
 func _process(delta: float) -> void:
 	if player_ref != null and Input.is_action_just_pressed("interact"):
+		get_tree().call_group(
+			"inventory", 
+			"update_slot", 
+			item_name, 
+			item_texture, 
+			item_info_list)
 		spawn_effect()
 		queue_free()
 

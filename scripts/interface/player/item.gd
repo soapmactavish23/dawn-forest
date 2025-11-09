@@ -57,7 +57,7 @@ func update_item(
 			item_dictionary = item_info[2]
 		"Resource":
 			amount += item_info[4]
-			type_value = item_info[2]
+			type_value = 0
 		"Health":
 			amount += item_info[4]
 			type_value = item_info[2]

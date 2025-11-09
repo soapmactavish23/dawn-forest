@@ -2,6 +2,7 @@ extends Control
 class_name InventoryContainer
 
 onready var slot_container: GridContainer = $VContainer/Background/GridContainer
+onready var animation: AnimationPlayer = $Animation
 
 var current_state: String
 
