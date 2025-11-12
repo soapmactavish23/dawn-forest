@@ -2,6 +2,7 @@ extends TextureRect
 class_name InterfaceItem
 
 signal empty_slot
+signal item_clicked
 
 onready var item_texture: TextureRect = $ItemTexture
 onready var item_amount: Label = $Amount
@@ -79,7 +80,14 @@ func update_item(
 	if item_type == "Equipament" or item_type == "Weapon":
 		item_texture.show()
 	
-	
+func _process(delta):
+	if Input.is_action_just_pressed("click") and can_click and item_name != "":
+		emit_signal("item_clicked", item_index)
+		
+		modulate.a = 0.2
+		yield(get_tree().create_timer(0.1), "timeout")
+		modulate.a = 0.5
+
 func update_slot() -> void:
 	item_amount.hide()
 	item_texture.hide()
@@ -95,7 +103,12 @@ func update_slot() -> void:
 	
 	emit_signal("empty_slot", item_index)
 
-
+func update_amount(value: int) -> void:
+	var new_amount: int = amount - value
+	item_amount.text = str(new_amount)
+	amount = new_amount
+	if new_amount == 0:
+		update_slot()
 
 
 

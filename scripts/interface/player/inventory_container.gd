@@ -1,6 +1,7 @@
 extends Control
 class_name InventoryContainer
 
+
 onready var slot_container: GridContainer = $VContainer/Background/GridContainer
 onready var animation: AnimationPlayer = $Animation
 
@@ -81,6 +82,11 @@ func _ready():
 	
 	for children in slot_container.get_children():
 		children.connect("empty_slot", self, "empty_slot")
+		children.connect("item_clicked", self, "on_item_clicked") #TODO: COMO SABER SE DEU CERTO?
+		if children.is_connected("item_clicked", self, "on_item_clicked"):
+			print("Sinal conectado com sucesso!")
+		else:
+			print("Falha ao conectar o sinal.")
 		
 
 func update_slot(item_name: String, item_image: StreamTexture, item_info: Array):
@@ -126,6 +132,10 @@ func reset() -> void:
 	for children in slot_container.get_children():
 		children.reset()
 
+func on_item_clicked(index: int) -> void:
+	aux_animation.play("show_container")
+	item_index = index
+
 func mouse_interaction(state: String, object: TextureRect) -> void:
 	match state:
 		"entered":
@@ -145,6 +155,6 @@ func _process(delta):
 			"Delete":
 				slot_container.get_child(item_index).update_slot()
 	
-	item_index = -1
-	current_state = ""
-	aux_animation.play("hide_container")
+		item_index = -1
+		current_state = ""
+		aux_animation.play("hide_container")
