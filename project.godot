@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/enemy_texture.gd"
 }, {
+"base": "Control",
+"class": "EquipamentContainer",
+"language": "GDScript",
+"path": "res://scripts/interface/player/equipament_container.gd"
+}, {
 "base": "Area2D",
 "class": "FireSpell",
 "language": "GDScript",
@@ -141,6 +146,7 @@ _global_script_class_icons={
 "EnemySpawner": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
+"EquipamentContainer": "",
 "FireSpell": "",
 "FloatText": "",
 "InterfaceItem": "",
