@@ -8,8 +8,7 @@ onready var armor_container: TextureRect = $VContainer/ArmorBackground
 onready var weapon_container: TextureRect = $VContainer/WeaponBackground
 
 func consumable_slot(item_texture: StreamTexture, item_info: Array) -> void:
-	#consumable_container.update_consumable_slot(item_texture, item_info)
-	print(item_info)
+	consumable_container.update_consumable_slot(item_texture, item_info)
 
 func armor_slot(item_texture: StreamTexture, item_info: Array) -> void:
 	armor_container.update_armor_slot(item_texture, item_info)
