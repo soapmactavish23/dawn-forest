@@ -51,7 +51,7 @@ func _ready():
 				"Health": 3,
 				"Defense": 2
 			},
-			75
+			100
 		]
 		
 	}
