@@ -37,6 +37,8 @@ func update_weapon_slot(item_texture: StreamTexture, item_info: Array) -> void:
 		
 		weapon_item.show()
 		
+		# TODO: Enviar os atributos do equipamento ao sistema de status
+		
 func reset() -> void:
 	weapon_name = ""
 	weapon_type = ""
