@@ -13,7 +13,7 @@ var current_state: String
 var can_click: bool = false
 var is_visible: bool = false
 
-var item_index: int
+var item_index: int = -1
 
 var slot_item_info: Array = [
 	"",
@@ -125,10 +125,12 @@ func empty_slot(index: int) -> void:
 	slot_item_info[index] = ""
 	
 func reset() -> void:
+	if item_index != -1:
+		aux_animation.play("hide_container")
+	
 	item_index = -1
 	can_click = false
 	current_state = ""
-	aux_animation.play("hide_container")
 	for children in slot_container.get_children():
 		children.reset()
 

@@ -14,8 +14,9 @@ func update_bonus_stats(bonus_dict: Dictionary, state: bool):
 	left_container.update_bonus_stats(bonus_dict, state)
 	
 func reset() -> void:
-	left_container.reset()
-	right_container.reset()
+	#left_container.reset()
+	#right_container.reset()
+	pass
 
 func update_available_points() -> void:
 	right_container.update_avaliable_points(5)

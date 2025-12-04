@@ -159,7 +159,8 @@ func update_amount(value: int) -> void:
 	if new_amount == 0:
 		update_slot()
 
-
-
+func reset() -> void:
+	modulate.a = 1.0
+	can_click = false
 
 
