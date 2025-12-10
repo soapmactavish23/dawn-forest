@@ -7,10 +7,14 @@ export(NodePath) onready var stats_info = get_node(stats_info) as TextureRect
 
 func _ready():
 	for container in grid_container.get_children():
+		default_bonus_value(container)
 		container.connect("mouse_exited", self, "mouse_interaction",
 		["exited", container])
 		container.connect("mouse_entered", self, "mouse_interaction",
 		["entered", container])
+		
+func default_bonus_value(container: HBoxContainer) -> void:
+	container.get_node("Bonus").text = ""
 
 func mouse_interaction(state: String, container: HBoxContainer):
 	match state:

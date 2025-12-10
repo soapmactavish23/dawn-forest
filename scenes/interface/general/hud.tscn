@@ -14,5 +14,6 @@ script = ExtResource( 3 )
 [node name="StatsContainer" parent="." groups=["stats_hud"] instance=ExtResource( 5 )]
 
 [node name="BarContainer" parent="." instance=ExtResource( 1 )]
+mouse_filter = 2
 
 [node name="EquipamentContainer" parent="." groups=["equipament_container"] instance=ExtResource( 4 )]
