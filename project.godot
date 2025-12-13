@@ -134,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/player_texture.gd"
 }, {
+"base": "TextureRect",
+"class": "PointsInfo",
+"language": "GDScript",
+"path": "res://scripts/interface/player/points_info.gd"
+}, {
 "base": "Control",
 "class": "StatsContainer",
 "language": "GDScript",
@@ -148,6 +153,11 @@ _global_script_classes=[ {
 "class": "StatsLeftContainer",
 "language": "GDScript",
 "path": "res://scripts/interface/player/left_container.gd"
+}, {
+"base": "TextureRect",
+"class": "StatsRightContainer",
+"language": "GDScript",
+"path": "res://scripts/interface/player/right_container.gd"
 }, {
 "base": "TextureRect",
 "class": "WeaponContainer",
@@ -190,9 +200,11 @@ _global_script_class_icons={
 "Player": "",
 "PlayerStats": "",
 "PlayerTexture": "",
+"PointsInfo": "",
 "StatsContainer": "",
 "StatsInfo": "",
 "StatsLeftContainer": "",
+"StatsRightContainer": "",
 "WeaponContainer": "",
 "Whale": "",
 "WhaleTexture": ""

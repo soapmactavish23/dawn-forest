@@ -7,6 +7,9 @@ onready var right_container: TextureRect = $RightContainer
 
 var is_visible: bool = false
 
+func _ready():
+	update_available_points()
+
 func update_stats(stats_list: Array, bonus_stats_list: Array) -> void:
 	left_container.update_stats(stats_list, bonus_stats_list)
 	
@@ -16,7 +19,6 @@ func update_bonus_stats(bonus_dict: Dictionary, state: bool):
 func reset() -> void:
 	left_container.reset()
 	right_container.reset()
-	pass
 
 func update_available_points() -> void:
-	right_container.update_avaliable_points(5)
+	right_container.update_available_points(5)
