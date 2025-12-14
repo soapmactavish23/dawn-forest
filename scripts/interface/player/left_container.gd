@@ -55,7 +55,13 @@ func update_stats(stats_list: Array, bonus_stats_list: Array) -> void:
 	
 func update_bonus_stats(bonus_dict: Dictionary, state: bool) -> void:
 	for key in bonus_dict.keys():
-		get_tree().call_group("player_stats", "update_bonus_stats", key, bonus_dict[key], state)
+		get_tree().call_group(
+			"player_stats", 
+			"update_bonus_stats", 
+			key, 
+			bonus_dict[key], 
+			state
+		)
 		
 		
 func reset() -> void:

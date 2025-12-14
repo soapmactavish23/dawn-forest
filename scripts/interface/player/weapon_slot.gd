@@ -37,7 +37,12 @@ func update_weapon_slot(item_texture: StreamTexture, item_info: Array) -> void:
 		
 		weapon_item.show()
 		
-		# TODO: Enviar os atributos do equipamento ao sistema de status
+		get_tree().call_group(
+			"stats_hud", 
+			"update_bonus_stats", 
+			weapon_dictionary, 
+			false
+		)
 		
 func reset() -> void:
 	weapon_name = ""

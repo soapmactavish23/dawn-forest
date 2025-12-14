@@ -36,6 +36,13 @@ func update_armor_slot(item_texture: StreamTexture, item_info: Array):
 	
 	armor_item.show()
 	
+	get_tree().call_group(
+		"stats_hud", 
+		"update_bonus_stats", 
+		armor_dictionary, 
+		false
+	)
+	
 
 func reset() -> void:
 	armor_name = ""
