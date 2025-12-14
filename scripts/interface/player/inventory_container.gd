@@ -82,12 +82,7 @@ func _ready():
 	
 	for children in slot_container.get_children():
 		children.connect("empty_slot", self, "empty_slot")
-		children.connect("item_clicked", self, "on_item_clicked") #TODO: COMO SABER SE DEU CERTO?
-		if children.is_connected("item_clicked", self, "on_item_clicked"):
-			print("Sinal conectado com sucesso!")
-		else:
-			print("Falha ao conectar o sinal.")
-		
+		children.connect("item_clicked", self, "on_item_clicked")
 
 func update_slot(item_name: String, item_image: StreamTexture, item_info: Array):
 	var existing_item_index: int = slot_list.find(item_name)

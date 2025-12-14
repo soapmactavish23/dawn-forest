@@ -44,7 +44,7 @@ func apply_weight(weight: int, stat: String) -> void:
 	if stats_points >= weight:
 		stats_points -= weight
 		points_info.update_text_value(str(stats_points))
-		# TODO: Enviar os novos atributos evoluidos para o sistema de stats
+		get_tree().call_group("player_stats", "update_stats", stat)
 	
 func reset() -> void:
 	for children in v_container.get_children():
