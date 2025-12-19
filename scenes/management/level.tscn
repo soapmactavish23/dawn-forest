@@ -154,7 +154,7 @@ tile_data = PoolIntArray( 458754, 0, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0
 [node name="Mask" parent="." instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 93, 99 )
+position = Vector2( 770, 99 )
 
 [node name="Enviroment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
