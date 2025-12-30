@@ -43,6 +43,18 @@ export(NodePath) onready var player = get_node(player) as KinematicBody2D
 export(NodePath) onready var collision_area = get_node(collision_area) as Area2D
 
 func _ready() -> void:
+	var file: File = File.new()
+	if file.file_exists(data_management.save_path):
+		data_management.load_data()
+		level = data_management.data_dictionary.current_level
+		current_exp = data_management.data_dictionary.current_exp
+		
+		get_tree().call_group(
+			"bar_container", 
+			"reset_exp_bar", 
+			level_dict[str(level)],
+			current_exp)
+	
 	current_mana = base_mana + bonus_mana
 	max_mana = current_mana
 	
@@ -175,8 +187,14 @@ func update_exp(value: int) -> void:
 		current_exp = leftover
 		on_level_up()
 		level += 1
+		
+		data_management.data_dictionary.current_level = level
+		
 	elif current_exp >= level_dict[str(level)] and level == 9:
 		current_exp = level_dict[str(level)]
+		
+	data_management.data_dictionary.current_exp = current_exp
+	data_management.save_data()
 	
 func on_level_up() -> void:
 	current_mana = base_mana + bonus_mana
