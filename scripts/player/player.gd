@@ -153,6 +153,6 @@ func spawn_spell() -> void:
 func _exit_tree():
 	if dead == true:
 		return
-		
+	
 	data_management.data_dictionary.player_position = global_position
 	data_management.save_data()
