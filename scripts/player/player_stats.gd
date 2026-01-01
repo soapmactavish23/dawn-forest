@@ -43,12 +43,6 @@ export(NodePath) onready var player = get_node(player) as KinematicBody2D
 export(NodePath) onready var collision_area = get_node(collision_area) as Area2D
 
 func _ready() -> void:
-	current_mana = base_mana + bonus_mana
-	max_mana = base_mana + bonus_mana
-	
-	current_health = base_health + bonus_health
-	max_health = base_health + bonus_health
-	
 	var file: File = File.new()
 	if file.file_exists(data_management.save_path):
 		data_management.load_data()
@@ -57,6 +51,7 @@ func _ready() -> void:
 		
 		current_mana = data_management.data_dictionary.current_mana
 		current_health = data_management.data_dictionary.current_health
+		update_stats_with_serialized_data()
 		
 		get_tree().call_group(
 			"bar_container", 
@@ -82,6 +77,18 @@ func _ready() -> void:
 			"HealthBar", 
 			current_health)
 	update_stats_hud()
+	
+func update_stats_with_serialized_data() -> void:
+	var base_stats: Array = data_management.data_dictionary.base_stats
+	#print(base_stats)
+	base_health = base_stats[0]
+	base_mana = base_stats[1]
+	
+	current_mana = base_mana + bonus_mana
+	max_mana = base_mana + bonus_mana
+	
+	current_health = base_health + bonus_health
+	max_health = base_health + bonus_health
 	
 func update_stats(stat: String) -> void:
 	match stat:
@@ -195,6 +202,22 @@ func update_stats_hud() -> void:
 			bonus_magic_attack,
 			bonus_defense
 		])
+	
+	data_management.data_dictionary.base_stats = [
+		base_health,
+		base_mana,
+		base_attack,
+		base_magic_attack,
+		base_defense
+	]
+	
+	data_management.save_data()
+	
+	if current_health > max_health:
+		current_health = max_health
+	
+	if current_mana > max_mana:
+		current_mana = max_mana
 
 func update_exp(value: int) -> void:
 	current_exp += value
