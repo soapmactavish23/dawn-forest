@@ -19,7 +19,8 @@ var data_dictionary: Dictionary = {
 		1,
 		3,
 		1
-	]
+	],
+	"available_points": 0
 }
 
 func save_data() -> void:
