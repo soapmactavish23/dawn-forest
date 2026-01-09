@@ -26,6 +26,8 @@ func on_game_over() -> void:
 	data_management.data_dictionary.player_position = data_management.initial_position
 	
 	data_management.data_dictionary.consumable_container = []
+	data_management.data_dictionary.weapon_container = []
+	data_management.data_dictionary.armor_container = []
 	data_management.save_data()
 	var _reload: bool = get_tree().reload_current_scene()
 

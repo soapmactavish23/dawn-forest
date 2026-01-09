@@ -10,6 +10,18 @@ var armor_texture_path: String = ""
 
 var armor_price: int
 
+func _ready():
+	var file: File = File.new()
+	if file.file_exists(data_management.save_path):
+		data_management.load_data()
+		
+		if data_management.data_dictionary.armor_container.empty():
+			return
+		
+		var data: Array = data_management.data_dictionary.armor_container
+		var item_texture: StreamTexture = load(data[0])
+		update_armor_slot(item_texture, data)
+
 func update_armor_slot(item_texture: StreamTexture, item_info: Array):
 	if armor_name != "":
 		get_tree().call_group(
@@ -43,6 +55,9 @@ func update_armor_slot(item_texture: StreamTexture, item_info: Array):
 		false
 	)
 	
+	data_management.data_dictionary.armor_container = item_info
+	data_management.save_data()
+	
 
 func reset() -> void:
 	armor_name = ""
@@ -53,3 +68,5 @@ func reset() -> void:
 	armor_item.texture = null
 	
 	armor_dictionary = {}
+	data_management.data_dictionary.armor_container = []
+	data_management.save_data()
