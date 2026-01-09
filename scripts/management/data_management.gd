@@ -20,7 +20,11 @@ var data_dictionary: Dictionary = {
 		3,
 		1
 	],
-	"available_points": 0
+	"available_points": 0,
+	
+	"armor_container": [],
+	"weapon_container": [],
+	"consumable_container": []
 }
 
 func save_data() -> void:
