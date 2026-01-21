@@ -34,6 +34,14 @@ func on_button_pressed(button_name: String) -> void:
 		"BackButton":
 			skin_select.hide()
 			button_container.show()
+		"Red":
+			send_skin_and_start_game('res://assets/player/char_red.png')
+		"Blue":
+			send_skin_and_start_game('res://assets/player/char_blue.png')
+		"Green":
+			send_skin_and_start_game('res://assets/player/char_green.png')
+		"Purple":
+			send_skin_and_start_game('res://assets/player/char_purple.png')
 	
 	reset()
 
@@ -52,3 +60,8 @@ func reset() -> void:
 		mouse_interaction(button, "exited")
 		
 	has_save()
+
+func send_skin_and_start_game(path):
+	data_management.data_dictionary.player_texture = path
+	data_management.save_data()
+	var _change_scene: bool = get_tree().change_scene("res://scenes/management/level.tscn")
