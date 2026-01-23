@@ -219,6 +219,7 @@ config/icon="res://icon.png"
 [autoload]
 
 data_management="*res://scripts/management/data_management.gd"
+transaction_screen="*res://scenes/management/transaction_screen.tscn"
 
 [display]
 
