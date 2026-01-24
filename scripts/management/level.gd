@@ -3,6 +3,8 @@ class_name Level
 
 onready var player: KinematicBody2D = $Player
 
+export(String) var scene_path
+
 func _ready() -> void:
 	var _game_over: bool = player.get_node("Texture").connect("game_over", self, 
 	"on_game_over")
@@ -29,5 +31,7 @@ func on_game_over() -> void:
 	data_management.data_dictionary.weapon_container = []
 	data_management.data_dictionary.armor_container = []
 	data_management.save_data()
-	var _reload: bool = get_tree().reload_current_scene()
+	
+	transaction_screen.scene_path = scene_path
+	transaction_screen.fade_in()
 
