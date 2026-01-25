@@ -9,6 +9,8 @@ onready var label_name: Label = $Background/Name
 onready var portrait: TextureRect = $Background/Portrait
 onready var text_label: RichTextLabel = $Background/TextLabel
 
+var can_skip_dialog: bool= false
+
 var dialog_size: int
 var dialog_index: int = 0
 
@@ -33,6 +35,11 @@ func _ready():
 		
 	show_dialog()
 	
+func _process(delta):
+	if Input.is_action_just_pressed("interact") and can_skip_dialog:
+		can_skip_dialog = false
+		show_dialog()
+	
 func show_dialog() -> void:
 	if dialog_index == dialog_size:
 		animation.play("fade_out")
@@ -50,3 +57,5 @@ func show_dialog() -> void:
 		text_label.visible_characters += 1
 		timer.start(wait_time)
 		yield(timer, "timeout")
+		
+	can_skip_dialog = true
