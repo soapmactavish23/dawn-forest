@@ -12,11 +12,18 @@ onready var text_label: RichTextLabel = $Background/TextLabel
 var dialog_size: int
 var dialog_index: int = 0
 
-var dialog_list: Dictionary = {}
+var dialog_list: Dictionary = {
+	"dialog": [
+		"Ola, aventureiro. Em que posso te ajudar?"
+	],
+	"portrait": null,
+	"name": ""
+}
 
 export(float) var wait_time = 0.02
 
 func _ready():
+	animation.play("fade_in")
 	dialog_size = dialog_list['dialog'].size()
 	
 	if dialog_list["portrait"] != null:
@@ -27,4 +34,19 @@ func _ready():
 	show_dialog()
 	
 func show_dialog() -> void:
-	pass
+	if dialog_index == dialog_size:
+		animation.play("fade_out")
+		yield(animation, "animation_finished")
+		emit_signal("finished")
+		queue_free()
+		return
+	
+	text_label.percent_visible = 0
+	text_label.text = dialog_list['dialog'][dialog_index]
+	
+	dialog_index += 1
+	
+	while text_label.visible_characters < len(text_label.text):
+		text_label.visible_characters += 1
+		timer.start(wait_time)
+		yield(timer, "timeout")
