@@ -49,3 +49,6 @@ func show_stats() -> void:
 			
 func hide_equipament_container() -> void:
 	equipament_container.animation.play("hide_container")
+
+func spawn_dialog(interactable, dialog_list: Dictionary) -> void:
+	print(dialog_list)
