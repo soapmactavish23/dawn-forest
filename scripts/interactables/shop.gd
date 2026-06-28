@@ -6,7 +6,12 @@ var can_interact: bool = true
 var player_ref: KinematicBody2D = null
 
 var dialog_list: Dictionary = {
-	
+	"name": "Merchant",
+	"portrait": "res://assets/interface/dialog/merchant_portrait.png",
+	"dialog": [
+		"Hello, adventurer... he he",
+		"What do you want?"
+	]
 }
 
 func on_shop_body_entered(body):
@@ -36,3 +41,8 @@ func interactable_action() -> void:
 	get_tree().call_group("hud", "spawn_dialog", self, dialog_list)
 	aux_animation.play("fade_out")
 	player_ref.reset(true)
+
+func on_dialog_finished() -> void:
+	can_interact = true
+	player_ref.reset(false)
+	aux_animation.play("fade_in")

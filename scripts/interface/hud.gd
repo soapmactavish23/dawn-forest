@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const DIALOG_CONTAINER: PackedScene = preload("res://scenes/interface/general/dialog_container.tscn")
+
 onready var stats_container: Control = $StatsContainer
 onready var inventory_container: Control = $InventoryContainer
 onready var equipament_container: Control = $EquipamentContainer
@@ -51,4 +53,7 @@ func hide_equipament_container() -> void:
 	equipament_container.animation.play("hide_container")
 
 func spawn_dialog(interactable, dialog_list: Dictionary) -> void:
-	print(dialog_list)
+	var dialog = DIALOG_CONTAINER.instance()
+	dialog.connect("finished", interactable, "on_dialog_finished")
+	dialog.dialog_list = dialog_list
+	add_child(dialog)
